@@ -15,15 +15,15 @@ router.post('/signIn', async(req,res)=>{
     try {
         const signedUser = await Auth.findOne({ email })
         
-        if(!signedUser) return res.status(404).json({ message: 'Please Sign In'})
+        if(!signedUser) return res.status(404).json({status: false, message: 'Please Sign In'})
 
         const isPasswordCorrect = await bcrypt.compare(password, signedUser.password)
 
-        if(!isPasswordCorrect) return res.status(400).json({ message: 'Incorrect Password'})
+        if(!isPasswordCorrect) return res.status(404).json({status: false, message: 'Incorrect Password'})
 
         const token = jwt.sign({email: signedUser.email, id: signedUser._id}, process.env.SECRETE, {expiresIn:'1h'})
 
-        res.status(200).json({ result: signedUser, token})
+        res.status(200).json({status: true, token})
 
         
     } catch (error) {
@@ -38,7 +38,7 @@ router.post('/signUp', async(req,res)=>{
     try {
         const signedUser = await Auth.findOne({ email })
 
-        if(signedUser) return res.status(404).json({ message: 'User already exist'})
+        if(signedUser) return res.status(400).json({ status: false, message: 'User already exist'})
 
         const hashedPassword = await bcrypt.hash(password, 12)
 
@@ -46,7 +46,7 @@ router.post('/signUp', async(req,res)=>{
 
         const token = jwt.sign({ email: result.email, id: result._id}, process.env.SECRETE, {expiresIn:'1h'});
 
-        res.status(200).json({result, token})
+        res.status(200).json({status: true, token})
     } catch (error) {
         res.status(500).json(error)
     }
