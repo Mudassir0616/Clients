@@ -2,17 +2,42 @@ import express from 'express'
 import mongoose from 'mongoose'
 import userRoutes from './routes/Users.js'
 import authRoutes from './routes/auth.js'
+import verification from './middleware.js'
 
 const app = express()
 
 app.use(express.json())
 
-app.get('/auth',(req, res)=>{
-    res.send('Authorization')
-})
-
 app.use('/users', userRoutes)
 app.use('/auth', authRoutes)
+
+const DummyData = [
+    {
+        name: 'krillin',
+        email: "kuririn@gmail.com",
+        age: '255'
+    },
+    {
+        name: 'Tien',
+        email: "tien@gmail.com",
+        age: '295'
+    },
+    {
+        name: 'Yamcha',
+        email: "yamcha@gmail.com",
+        age: '205'
+    },
+    {
+        name: 'Android 18',
+        email: "18@gmail.com",
+        age: '1055'
+    },
+]
+
+app.get('/dummy', (req,res)=>{
+
+    res.status(200).json(DummyData)
+})
 
 const PORT = process.env.PORT || 7001
 

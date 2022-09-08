@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import Auth from '../models/authModel.js'
 import * as dotenv from 'dotenv' 
+import verification from '../middleware.js'
 
 
 dotenv.config()
@@ -21,7 +22,7 @@ router.post('/signIn', async(req,res)=>{
 
         if(!isPasswordCorrect) return res.status(404).json({status: false, message: 'Incorrect Password'})
 
-        const token = jwt.sign({email: signedUser.email, id: signedUser._id}, process.env.SECRETE, {expiresIn:'1h'})
+        const token = jwt.sign({email: signedUser.email, id: signedUser._id}, process.env.SECRETE, {expiresIn:'3min'})
 
         res.status(200).json({status: true, token})
 
@@ -31,6 +32,7 @@ router.post('/signIn', async(req,res)=>{
         res.status(500).json(error)
     }
 })
+
 
 router.post('/signUp', async(req,res)=>{
     const { name, email, password } = req.body
@@ -44,9 +46,9 @@ router.post('/signUp', async(req,res)=>{
 
         const result = await Auth.create({ email, password: hashedPassword, name})
 
-        const token = jwt.sign({ email: result.email, id: result._id}, process.env.SECRETE, {expiresIn:'1h'});
+        const token = jwt.sign({ email: result.email, id: result._id}, process.env.SECRETE, {expiresIn:'1min'});
 
-        res.status(200).json({status: true, token})
+        res.status(200).json({status: true, message:'Signed Up successfully', token})
     } catch (error) {
         res.status(500).json(error)
     }
@@ -54,3 +56,14 @@ router.post('/signUp', async(req,res)=>{
 })
 
 export default router
+
+
+router.get('/', verification, async(req, res)=>{
+    try {
+        const usersData = await Auth.find()
+
+        res.json(usersData)
+    } catch (error) {
+        res.json(error)
+    }
+})

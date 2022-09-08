@@ -3,11 +3,7 @@ import mongoose from "mongoose";
 const userSchema = mongoose.Schema({
     name: String,
     email: String,
-    number: String,
-    selectDate: {
-        type: Date,
-        default: new Date()
-    },
+    age: String,
     createdAt: {
         type: Date,
         default: new Date()
