@@ -7,10 +7,10 @@ dotenv.config()
 const verification = (req, res, next)=>{
     const authorizedtoken = req.headers.authorization
 
-    let decodedData;
+    
     if(authorizedtoken){
         const token = authorizedtoken.split(' ')[1]
-        decodedData = jwt.verify(token, process.env.SECRETE, (err)=>{
+        let decodedData = jwt.verify(token, process.env.SECRETE, (err)=>{
             if(err){
                 res.status(403).json('Invalid or the token has been expired please login again !!')
             }
