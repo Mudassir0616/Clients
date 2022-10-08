@@ -120,7 +120,18 @@ tr:nth-child(odd) {
   padding: 5px 13px;
   line-height: 22px;
 }
-
+.add-btn{
+  margin: 20px 0;
+  padding-left: 20px;
+}
+.add-btn button{
+  background-color: #1334B3;
+  color: #FFFFFF;
+  border: none;
+  padding: 9px 30px;
+  border-radius: 7px;
+  font-weight: 600;
+}
 .add-main{
   display: flex;
   flex-direction: column;
