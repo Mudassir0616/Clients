@@ -1,6 +1,7 @@
 import express from 'express'
 import verification from '../middleware.js'
 import Users from '../models/UsersModel.js'
+import PaymentModel from '../models/paymentModel.js'
 
 const router = express.Router()
 
@@ -26,7 +27,7 @@ router.get('/:id', async(req,res) =>{
     if(!oneUser) {
         return res.status(404).json('no user')
     } else{
-        res.status(200).json(oneUser)
+        res.status(200 ).json(oneUser)
     }
     
 })
@@ -41,6 +42,22 @@ router.post('/', verification, async (req, res)=>{
         const savedUser = await newUser.save()
 
         res.status(201).send(savedUser)
+    } catch (error) {
+        res.status(409).send(error)
+        
+    }
+
+})
+
+router.post('/payment', async (req, res)=>{
+    const payment = req.body
+
+    const newPayment = new PaymentModel(payment)
+
+    try {
+        await newPayment.save()
+
+        res.status(201).send(newPayment)
     } catch (error) {
         res.status(409).send(error)
         

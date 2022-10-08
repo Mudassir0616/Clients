@@ -1,0 +1,153 @@
+body{
+  font-family: Nunito Sans;
+}
+.main{
+  display: flex;
+}
+.login{
+  flex: 0.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.logBox{
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 24px;
+  width: 417px;
+  height: 319px;
+}
+.company{
+  flex: 0.6;
+  background: #1334B3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.box{
+  width: 407px;
+  height: 293.03px;
+  background: #FFFFFF;
+  box-shadow: 0px 12px 48px rgba(3, 0, 55, 0.15);
+  border-radius: 20px;
+  margin: 50px 0;
+  transform: skewY(10deg);
+}
+.company-name{
+  text-align: center;
+  width: 650px;
+  color: #FFFFFF;
+}
+
+/*------------------------- CLIENTS -------------------*/
+.client-main{
+  display: flex;
+}
+.left-side{
+  flex: 0.20;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+.logout{
+  padding-left: 20px;
+  line-height: 5px;
+}
+.table{
+  text-align: center;
+  margin: 50px 0; 
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+  color: gray;
+}
+.table td, th {
+  text-align: center;
+  padding: 13px;
+  font-size: 17px; 
+}
+
+tr:nth-child(odd) {
+  background-color: #f6f6f6;
+  color: gray;
+}
+.right-side{
+  flex: 0.80;
+}
+.srch{
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  
+}
+.srch-inp{
+  display: flex;
+  align-items: center;
+  background-color: #f6f6f6;
+  border-radius: 20px;
+  
+}
+.srch-inp input{
+  border: none;
+  background-color: #f6f6f6;
+  outline-width: 0;
+  letter-spacing: 1px;
+}
+.srch-inp > .MuiSvgIcon-root {
+  color: gray;
+  padding: 10px;
+}
+.btn{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 16px;
+  gap: 12px;
+}
+.client-btns{
+  text-align: start;
+  background-color: #1334B3;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  width: 200px;
+  padding: 5px 13px;
+  line-height: 22px;
+}
+
+.add-main{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  gap: 24px;
+}
+
+.details{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.inputs{
+  margin: 10px;
+  width: 100%;
+}
+.MuiFormControl-root{
+  width: 450px;
+}
+.payment-inp{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding-left: 20px;
+}
+

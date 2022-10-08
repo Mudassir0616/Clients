@@ -22,9 +22,9 @@ router.post('/signIn', async(req,res)=>{
 
         if(!isPasswordCorrect) return res.status(404).json({status: false, message: 'Incorrect Password'})
 
-        const token = jwt.sign({email: signedUser.email, id: signedUser._id}, process.env.SECRETE, {expiresIn:'3min'})
+        const token = jwt.sign({subject: signedUser._id}, process.env.SECRETE)
 
-        res.status(200).json({status: true, token})
+        res.status(200).json({signedUser, token})
 
         
     } catch (error) {
